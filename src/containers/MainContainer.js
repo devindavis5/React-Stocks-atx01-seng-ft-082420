@@ -5,20 +5,45 @@ import SearchBar from '../components/SearchBar'
 
 class MainContainer extends Component {
 
+  getStocks = () => {
+    let stocks = this.props.stocks
+    if (this.props.filter === "Tech") {
+      stocks = stocks.filter(s => s.type === "Tech")
+    } else if (this.props.filter === "Finance") {
+      stocks = stocks.filter(s => s.type === "Finance")
+    } else if (this.props.filter === "Sportswear") {
+      stocks = stocks.filter(s => s.type === "Sportswear")
+    }
+    return stocks
+  }
+
+  getPortfolio = () => {
+    let stocks = this.props.portfolio
+    if (this.props.filter === "Tech") {
+      stocks = stocks.filter(s => s.type === "Tech")
+    } else if (this.props.filter === "Finance") {
+      stocks = stocks.filter(s => s.type === "Finance")
+    } else if (this.props.filter === "Sportswear") {
+      stocks = stocks.filter(s => s.type === "Sportswear")
+    }
+    return stocks
+  }
+
   render() {
     return (
       <div>
-        <SearchBar/>
+        <SearchBar handleSearch={this.props.handleSearch} handleSort={this.props.handleSort} checked={this.props.checked}
+          handleFilter={this.props.handleFilter}/>
 
           <div className="row">
             <div className="col-8">
 
-              <StockContainer/>
+              <StockContainer stocks={this.getStocks()} onClick={this.props.onClick}/>
 
             </div>
             <div className="col-4">
 
-              <PortfolioContainer/>
+              <PortfolioContainer portfolio={this.getPortfolio()} onClick={this.props.onClick}/>
 
             </div>
           </div>
