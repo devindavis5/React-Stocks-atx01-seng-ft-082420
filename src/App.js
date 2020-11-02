@@ -32,16 +32,16 @@ class App extends Component {
     }
   }
 
-  handleSearch = (val) => {
-    this.setState({search: val})
+  handleSearch = (search) => {
+    this.setState({search: search.toLowerCase()})
   }
 
-  handleSort = (val) => {
-    this.setState({sort: val})
+  handleSort = (sort) => {
+    this.setState({sort})
   }
 
-  handleFilter = (val) => {
-    this.setState({filter: val})
+  handleFilter = (filter) => {
+    this.setState({filter})
   }
 
   getStocks = () => {
@@ -65,8 +65,8 @@ class App extends Component {
   }
 
   render() {
-    const stocks = this.getStocks().filter(s => s.name.includes(this.state.search))
-    const portfolio = this.getPortfolio().filter(s => s.name.includes(this.state.search))
+    const stocks = this.getStocks().filter(s => s.name.toLowerCase().includes(this.state.search))
+    const portfolio = this.getPortfolio().filter(s => s.name.toLowerCase().includes(this.state.search))
     return (
       <div>
         <Header/>
